@@ -1,5 +1,0 @@
-maria;maria123;1000;maria
-vinicios;jack1234;1000;vini
-lmrs0;lucas888;lucas matheus;980
-zezinho123;zezinho vai te matar;zezinho;1020
-lucas;lucas888;lucas;930

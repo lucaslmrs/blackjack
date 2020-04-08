@@ -24,6 +24,11 @@ class Jogador(object):
         self.seguro = 0
         self.mao = {'mao1': list(), 'mao2': list()}
 
+    def reiniciar(self):
+        self.aposta = [int(), int()]
+        self.seguro = 0
+        self.mao = {'mao1': list(), 'mao2': list()}
+
     def definir_aposta(self, msg):
         """
         Define o valor inicial da aposta.

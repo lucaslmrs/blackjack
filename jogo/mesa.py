@@ -23,6 +23,8 @@ class Mesa(object):
     """
     def __init__(self, usuario):
         self.__usuario = usuario
+        self.__jogador = jogador.Jogador(self.__usuario.nome, self.__usuario.fichas)
+        self.__dealer = dealer.Dealer()
 
     def iniciar_jogo(self):
         """
@@ -36,8 +38,8 @@ class Mesa(object):
         [(print(palavra, end=' '), sleep(0.4)) for palavra in bem_vindo]
         r.printar(7)
         while True:
-            self.__jogador = jogador.Jogador(self.__usuario.nome, self.__usuario.fichas)
-            self.__dealer = dealer.Dealer()
+            self.__jogador.reiniciar()
+            self.__dealer.reiniciar()
             self.__rodada()
             self.__registrar_rodada()
 
@@ -144,7 +146,8 @@ class Mesa(object):
         r.printar(3)
         return fim
 
-    def __is_blackjack(self, cartas):
+    @staticmethod
+    def __is_blackjack(cartas):
         """
         verifica se é blackjack.
         :param cartas:

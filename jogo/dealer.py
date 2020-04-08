@@ -24,6 +24,11 @@ class Dealer(object):
         self.baralho.embaralhar()
         self.mao = list()
 
+    def reiniciar(self):
+        self.baralho = baralho.Baralho()
+        self.baralho.embaralhar()
+        self.mao = list()
+
     def dar_carta(self):
         return self.baralho.puxar()
 
@@ -41,7 +46,7 @@ class Dealer(object):
         if pts_oponente <= 21:
             pts_dealer = r.contar_pontos(self.mao)
             if pts_dealer >= 21:
-                False
+                return False
             elif pts_dealer < pts_oponente:
                 return True
             elif pts_dealer == pts_oponente:

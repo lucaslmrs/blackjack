@@ -11,6 +11,7 @@ todo/*------------------------------------------------------+
 """
 from random import randint
 from time import sleep
+from baralho.cartas import Carta
 
 
 def leia_string(msg):
@@ -69,30 +70,39 @@ def leia_dados(msg, min_caract=5):
     return dado
 
 
+def contar_pontos_ases(num_ases, pontos):
+    pontos_em_aberto = 21 - pontos
+    ases_pontos = 0
+    for n in range(num_ases):
+        if n == num_ases - 1:
+            if pontos_em_aberto >= 11:
+                ases_pontos += 11
+                pontos_em_aberto - 11
+                continue
+        ases_pontos += 1
+        pontos_em_aberto -= 1
+    return ases_pontos
+
+
 def contar_pontos(cartas):
     """
     Conta os pontos das cartas presentes numa mão.
     :param cartas: Cartas presentes numa mão
     :return: Quantidade de pontos.
     """
-    pontos = [int(), int()]
+    pontos = 0
+    ases = 0
     for carta in cartas:
         if carta.dados['carta'] == 'A':
-            pontos[0] += carta.dados['valor'][0]
-            pontos[1] += carta.dados['valor'][1]
+            ases += 1
         else:
-            pontos[0] += carta.dados['valor']
-            pontos[1] += carta.dados['valor']
+            pontos += carta.dados['valor']
 
-    if max(pontos) <= 21:
-        return max(pontos)
-    else:
-        return min(pontos)
+    return pontos + contar_pontos_ases(ases, pontos)
 
 
 def printar(n):
     [print() for i in range(0, n)]
-
 
 color = {'normal': '\033[m',  # 0 - Sem cores
          'vermelho': '\033[0;31m',  # 1 - Vermelho
